@@ -1,4 +1,8 @@
 {
+  "license": "UNLICENSED",
+  "name": "Node Basic",
+  "main": "start.js",
+  "description": "Old school BASIC for Node",
   "requires": true,
   "lockfileVersion": 1,
   "dependencies": {
@@ -272,6 +276,7 @@
       "resolved": "https://registry.npmjs.org/has-unicode/-/has-unicode-2.0.1.tgz",
       "version": "2.0.1"
     },
+    "hashmap": "^2.3.0",
     "inherits": {
       "integrity": "sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4=",
       "resolved": "https://registry.npmjs.org/inherits/-/inherits-2.0.3.tgz",
@@ -470,15 +475,7 @@
       "resolved": "https://registry.npmjs.org/readable-stream/-/readable-stream-2.3.6.tgz",
       "version": "2.3.6"
     },
-    "robotjs": {
-      "integrity": "sha512-5qKsJs+0rI94WZRr3S0TleDGaiK9yeQ8PIDHwJUXWWnaHuTrbOluvw/WwSm3V7LfeLNcOHcsorP4umgmYzPLFw==",
-      "requires": {
-        "nan": "^2.2.1",
-        "prebuild-install": "^2.1.1"
-      },
-      "resolved": "https://registry.npmjs.org/robotjs/-/robotjs-0.5.1.tgz",
-      "version": "0.5.1"
-    },
+    "robotjs": "^0.5.1",
     "safe-buffer": {
       "integrity": "sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==",
       "resolved": "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.1.2.tgz",

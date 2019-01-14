@@ -3,6 +3,7 @@ const stream = require('stream');
 const Speaker = require('speaker');
 const wait = require ('wait-for-stuff');
 const events = require('events');
+const HashMap = require('hashmap');
 
 events.EventEmitter.defaultMaxListeners = 0;
 let eventEmitter = new events.EventEmitter();
@@ -24,10 +25,18 @@ function playAudioFromBuffer (audioBuff)
     });
 }
 
+const map = new HashMap.HashMap();
+
 async function speak(speech)
 {
-    let out = await text2wav(speech, {voice: 'de'});
-    playAudioFromBuffer(out);
+    let m = map.get (speech);
+    if (m == undefined)
+    {
+        m = await text2wav(speech, {voice: 'de'});
+        map.set (speech, m);
+    }
+    //let p = await text2wav(speech, {voice: 'de'});
+    playAudioFromBuffer(m);
 }
 
 function speakSync (speech)
