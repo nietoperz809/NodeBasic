@@ -19,7 +19,7 @@
  last update: Thu May 27 00:42:16 EDT 2010
  */
 
-const sam = require ('./sam');
+const speech = require ('./speech');
 const wait = require ('wait-for-stuff');
 const events = require('events');
 
@@ -2252,11 +2252,7 @@ function Interpreter (parser)
             eol = false;
         }
 
-        let jss = new sam.SamJS ();
-        jss.playSam (result);
-
-        //if (self.print_function)
-        //    self.print_function (result, eol);
+        speech.speakSync(result);
 
         return idx + 1;
     }

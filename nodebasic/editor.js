@@ -9,7 +9,6 @@ const path = require('path');
 function Editor()
 {
     let program = [];
-
     let interpreter = new basic.Interpreter();
     interpreter.print_function = myprint;
     interpreter.string_input_function = myTextInput;
@@ -44,11 +43,18 @@ function Editor()
         }
     }
 
+    /**
+     * BASIC NEW
+     */
     this.new = function()
     {
         program = [];
     };
 
+    /**
+     * BASIC RUN
+     * @returns {boolean} false if error occurs
+     */
     this.basicRun = function()
     {
         try
@@ -67,6 +73,11 @@ function Editor()
         }
     };
 
+    /**
+     * Execute single BASIC command
+     * @param txt BASIC statement
+     * @returns {boolean} false if failed
+     */
     function immediate(txt)
     {
         try
@@ -84,6 +95,10 @@ function Editor()
         }
     }
 
+    /**
+     * Returns whole program as String
+     * @returns {string} the program text
+     */
     function progToString()
     {
         let out = '\n';
@@ -94,6 +109,10 @@ function Editor()
         return out;
     }
 
+    /**
+     * Store program on disk
+     * @param filename
+     */
     this.save = function(filename)
     {
         try
@@ -107,6 +126,10 @@ function Editor()
         }
     };
 
+    /**
+     * Load program from disk
+     * @param filename
+     */
     this.load = function (filename)
     {
         try
@@ -117,7 +140,7 @@ function Editor()
             {
                 if (sp[s])
                 {
-                    rawInput(sp[s]);
+                    this.rawInput(sp[s]);
                 }
             }
         }
@@ -127,6 +150,10 @@ function Editor()
         }
     };
 
+    /**
+     * Print directory content
+     * @param srcPath
+     */
     this.dir = function(srcPath)
     {
         console.log('DIR of: ' + path.resolve(srcPath));
@@ -138,7 +165,7 @@ function Editor()
                 file = file.padEnd(20, ' ');
                 if (stat.isDirectory())
                 {
-                    console.log(file + '<DIR>');
+                    console.log(file + '[DIR]');
                 }
                 else
                 {
@@ -151,6 +178,10 @@ function Editor()
         });
     };
 
+    /**
+     * Renumber the program
+     * @param args array[2] startvalue, step
+     */
     this.renumber = function (args)
     {
         let renMap = [];
@@ -189,6 +220,10 @@ function Editor()
         });
     };
 
+    /**
+     * BASIC List
+     * @param fromto contains "from-to"
+     */
     this.list = function (fromto)
     {
         fromto.shift();
@@ -226,6 +261,11 @@ function Editor()
         });
     };
 
+    /**
+     * Get Program one line or single statement
+     * @param line the line including line number
+     * @returns {boolean} false on error
+     */
     this.rawInput = function(line)
     {
         let match = line.match('^[0-9]+');
@@ -242,6 +282,10 @@ function Editor()
         }
     };
 
+    /**
+     * Delete line from program buffer
+     * @param num line number
+     */
     function deleteLine(num)
     {
         for (let i = 0; i < program.length; i++)
@@ -254,6 +298,11 @@ function Editor()
         }
     }
 
+    /**
+     * Put new line into program buffer
+     * @param num line number
+     * @param txt line text
+     */
     function basicLineInput(num, txt)
     {
         deleteLine(num);
@@ -268,6 +317,11 @@ function Editor()
         }
     }
 
+    /**
+     * Implements edit functionality
+     * @param num line to be edited
+     * @returns {*} boolean false on error
+     */
     this.edit = function (num)
     {
         let line = '';
@@ -285,7 +339,7 @@ function Editor()
         }
         robot.typeString(line);
         let cmd = syncinput.getKeyInput().trim();
-        return rawInput(cmd);
+        return this.rawInput(cmd);
     }
 }
 

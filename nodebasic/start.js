@@ -2,6 +2,10 @@ const edt = require ('./editor');
 const Editor = new edt.Editor();
 const syncinput = require('./syncinput');
 
+/**
+ * This is the start script
+ */
+
 process.stdout.write('*** Node BASIC ***');
 while (1)
 {
